@@ -10,9 +10,13 @@ $(document).ready(
 });
 
 let getMovies = (searchText) => {
-  $.get(`http://www.omdbapi.com/?i=tt3896198&apikey=226baf80&s=${searchText}`)
+  let url = `https://www.omdbapi.com/?i=tt3896198&apikey=226baf80&s=${searchText}`;
+  $.get(url)
     .then(function(response){
-        //console.log(response)
+        // console.log(response);
+        if(response.Response == "False"){
+          alert(`Error: ${response.Error}`);
+        }
         let movies = response.Search;
         let output = '';
 
